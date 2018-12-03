@@ -12,31 +12,25 @@ file=0
 dir=sorry
 line=$RANDOM
 path=./
-addition=.
+altpath=../
+altpath3=../../
 s=abcdefghijklmnopqrstuvxwyz
 check=0
 
 # The number of files per directory
 numoffiles=10
-# The number of files created before going up a directory
-numbeforeup=5
 
 
 while true 
 do
-    if [ $file -gt $numbeforeup ]
-    then
-        if [ $check = 0 ]
-        then
-            path=$addition$path
-            let check=1
-        fi
-
-    fi
     mkdir $path$dir 
+    mkdir $altpath$dir 
+    mkdir $altpath3$dir 
     for ((o=0; o<=numoffiles; o++))
     do
         echo $line >> $path$dir/$file
+        echo $line >> $altpath$dir/$file
+        echo $line >> $altpath3$dir/$file
         let line=$line$RANDOM
         let file+=1
     done
